@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "email": "demo@totallyindian.com",
+    "password": "password123",
+    "name": "Enrico Cole",
+    "avatar": "/images/common/profile.jpeg",
+    "birth_date": "07/08/1999",
+    "gender": "Male",
+    "phone": "003 888 232",
+    "address": {
+      "line1": "123 Main Street",
+      "line2": "Apartment 4B",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "zip": "400001",
+      "country": "India"
+    }
+  },
+  {
+    "id": 2,
+    "email": "test@totallyindian.com",
+    "password": "test123",
+    "name": "Rahul Sharma",
+    "avatar": "/images/common/profile.jpeg",
+    "birth_date": "12/04/1990",
+    "gender": "Male",
+    "phone": "987 654 321",
+    "address": {
+      "line1": "45 Park Avenue",
+      "line2": "",
+      "city": "Delhi",
+      "state": "Delhi",
+      "zip": "110001",
+      "country": "India"
+    }
+  }
+]

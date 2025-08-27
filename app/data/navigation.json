@@ -1,0 +1,193 @@
+{
+  "header": {
+    "logoUrl": "/images/common/logo.png",
+    "searchOptions": [
+      "Everywhere",
+      "Health & Wellness",
+      "Beauty & Personal Care",
+      "Books",
+      "Divinity",
+      "Home & Decor",
+      "Fashion"
+    ],
+    "catalogIcon": "/images/header/catalog.png",
+    "searchIcon": "/images/header/search.png",
+    "searchPlaceholder": "Search for any product...",
+    "userNavigation": [
+      {
+        "title": "Login",
+        "icon": "/images/header/login.png",
+        "url": "/auth?tab=login"
+      },
+      {
+        "title": "Order",
+        "icon": "/images/header/order.png",
+        "url": "/account?tab=orders"
+      },
+      {
+        "title": "Wishlist",
+        "icon": "/images/header/wishlist.png",
+        "url": "/account?tab=wishlist"
+      },
+      {
+        "title": "Cart",
+        "icon": "/images/header/cart.png",
+        "url": "/cart"
+      }
+    ],
+    "mainNavigation": [
+      {
+        "title": "Health & Wellness",
+        "url": "/category/health-wellness",
+        "icon": "fa-heart-pulse"
+      },
+      {
+        "title": "Beauty & Personal Care",
+        "url": "/category/body-care",
+        "icon": "fa-spray-can"
+      },
+      {
+        "title": "Books",
+        "url": "/category/books",
+        "icon": "fa-book"
+      },
+      {
+        "title": "Divinity",
+        "url": "/category/divinity",
+        "icon": "fa-om"
+      },
+      {
+        "title": "Home & Decor",
+        "url": "/category/home-decor",
+        "icon": "fa-home"
+      },
+      {
+        "title": "Fashion",
+        "url": "/category/fashion",
+        "icon": "fa-tshirt"
+      }
+    ]
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Subscribe to our emails",
+      "description": "Be the first to know about new collections and exclusive offers.",
+      "buttonText": "SUBSCRIBE",
+      "inputPlaceholder": "Enter your email",
+      "icon": "/images/footer/email.png"
+    },
+    "qrCode": {
+      "imageUrl": "/images/footer/qr_code.png",
+      "alt": "QR Code"
+    },
+    "followButton": {
+      "text": "Follow on shop",
+      "url": "#",
+      "icon": "fa-heart"
+    },
+    "navigation": {
+      "company": {
+        "title": "Company",
+        "links": [
+          { "name": "About Us", "url": "/about-us" },
+          { "name": "Careers", "url": "/careers" },
+          { "name": "Our Story", "url": "/our-story" },
+          { "name": "Press", "url": "/press" }
+        ]
+      },
+      "support": {
+        "title": "Support",
+        "links": [
+          { "name": "Contact Us", "url": "/contact-us" },
+          { "name": "FAQs", "url": "/faqs" },
+          { "name": "Shipping Policy", "url": "/shipping" },
+          { "name": "Returns & Exchanges", "url": "/returns" }
+        ]
+      },
+      "account": {
+        "title": "Account",
+        "links": [
+          { "name": "My Account", "url": "/account" },
+          { "name": "Order History", "url": "/orders" },
+          { "name": "Wishlist", "url": "/wishlist" },
+          { "name": "Track Order", "url": "/track-order" }
+        ]
+      }
+    },
+    "paymentMethods": [
+      {
+        "imageUrl": "/images/footer/payment/amazon.png",
+        "alt": "Amazon",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "imageUrl": "/images/footer/payment/amex.png",
+        "alt": "American Express",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "imageUrl": "/images/footer/payment/apple.png",
+        "alt": "Apple",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "imageUrl": "/images/footer/payment/diners.png",
+        "alt": "Diners",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "imageUrl": "/images/footer/payment/discover.png",
+        "alt": "Discover",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "imageUrl": "/images/footer/payment/gpay.png",
+        "alt": "Google",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "imageUrl": "/images/footer/payment/mastercard.png",
+        "alt": "Mastercard",
+        "width": 100,
+        "height": 100
+      },
+      {
+        "imageUrl": "/images/footer/payment/visa.png",
+        "alt": "Visa",
+        "width": 100,
+        "height": 100
+      }
+    ],
+    "socialMedia": [
+      {
+        "name": "facebook",
+        "url": "https://www.facebook.com/people/Totally-Indian/100092656934059/",
+        "icon": "fa-facebook-f"
+      },
+      {
+        "name": "instagram",
+        "url": "https://www.instagram.com/thetotallyindian/",
+        "icon": "fa-instagram"
+      }
+    ],
+    "accessibility": {
+      "text": "For the visually impaired",
+      "icon": "/images/footer/accessibility.png",
+      "url": "/accessibility"
+    },
+    "copyright": {
+      "text": "© 2023 Totally Indian. All rights reserved.",
+      "links": [
+        { "name": "Privacy Policy", "url": "/privacy" },
+        { "name": "Terms of Service", "url": "/terms" },
+        { "name": "Cookies", "url": "/cookies" }
+      ]
+    }
+  }
+}

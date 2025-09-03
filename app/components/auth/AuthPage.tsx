@@ -18,46 +18,38 @@ const AuthPage = () => {
     const checkoutRedirectUrl = localStorage.getItem("checkout_redirect");
     const returnUrl = localStorage.getItem("return_url");
     const buyNowPending = localStorage.getItem("buy_now_pending");
+    const referrer = document.referrer;
+    const cameFromCheckout = referrer && referrer.includes('/checkout');
 
     console.log("AuthPage useEffect - localStorage state:");
     console.log("checkoutRedirectUrl:", checkoutRedirectUrl);
     console.log("returnUrl:", returnUrl);
     console.log("buyNowPending:", buyNowPending);
+    console.log("referrer:", referrer);
+    console.log("cameFromCheckout:", cameFromCheckout);
     console.log("isLoggedIn:", isLoggedIn);
 
     // Only redirect if already logged in AND there are no pending redirects
     // Let the Login component handle all redirects when user logs in
     if (isLoggedIn) {
-      // Set a flag that user just logged in to prevent immediate homepage redirect
-      setJustLoggedIn(true);
+      // Check if there are any pending redirects
+      const currentCheckoutRedirect = localStorage.getItem("checkout_redirect");
+      const currentReturnUrl = localStorage.getItem("return_url");
+      const currentBuyNowPending = localStorage.getItem("buy_now_pending");
+      const currentReferrer = document.referrer;
+      const currentCameFromCheckout = currentReferrer && currentReferrer.includes('/checkout');
 
-      // Wait a moment to see if Login component will redirect
-      const timeout = setTimeout(() => {
-        // Re-check localStorage after timeout to see if Login component cleared it
-        const currentCheckoutRedirect =
-          localStorage.getItem("checkout_redirect");
-        const currentReturnUrl = localStorage.getItem("return_url");
-        const currentBuyNowPending = localStorage.getItem("buy_now_pending");
+      // If there are pending redirects or came from checkout, don't redirect to homepage
+      // Let the Login component handle the redirect
+      if (currentCheckoutRedirect || currentReturnUrl || currentBuyNowPending || currentCameFromCheckout) {
+        console.log("User logged in with pending redirects or came from checkout, not redirecting from AuthPage");
+        setJustLoggedIn(true);
+        return;
+      }
 
-        // Only redirect to home if there are still no pending redirects after timeout
-        if (
-          !currentCheckoutRedirect &&
-          !currentReturnUrl &&
-          !currentBuyNowPending
-        ) {
-          console.log(
-            "User already logged in with no pending redirects (after timeout), going to homepage"
-          );
-          router.replace("/");
-        } else {
-          console.log(
-            "User already logged in but has pending redirects (after timeout), not redirecting"
-          );
-        }
-        setJustLoggedIn(false);
-      }, 100); // Small delay to let Login component redirect first
-
-      return () => clearTimeout(timeout);
+      // Only redirect to homepage if no pending redirects
+      console.log("User already logged in with no pending redirects, going to homepage");
+      router.replace("/");
     } else {
       setJustLoggedIn(false);
     }

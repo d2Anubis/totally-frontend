@@ -931,7 +931,7 @@ export default function CheckoutPage() {
           const savedUrl = localStorage.getItem("checkout_redirect");
           console.log("Checkout: verified saved URL:", savedUrl);
 
-          router.push("/auth?tab=login");
+          router.push("/auth?tab=login&redirect=checkout");
         }
         // If cancelled, user stays on checkout page
       });
@@ -1333,7 +1333,7 @@ export default function CheckoutPage() {
                         savedUrl
                       );
 
-                      router.push("/auth?tab=login");
+                      router.push("/auth?tab=login&redirect=checkout");
                     }}
                     className="title-2 md:heading-3 text-blue-00 hover:text-blue-10 transition-colors cursor-pointer"
                   >
@@ -1515,7 +1515,7 @@ export default function CheckoutPage() {
                         savedUrl
                       );
 
-                      router.push("/auth?tab=login");
+                      router.push("/auth?tab=login&redirect=checkout");
                     }}
                     className="bg-blue-00 text-white py-3 px-8 rounded-md title-2-semibold hover:bg-blue-10 transition-colors"
                   >

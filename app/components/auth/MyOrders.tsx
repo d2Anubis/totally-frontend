@@ -118,7 +118,7 @@ export default function MyOrders() {
     );
 
     return {
-      id: `#${order.id.substring(0, 8)}`, // First 8 chars of UUID for display
+      id: `#TI/${order.id.substring(0, 8)}`, // First 8 chars of UUID for display
       status: displayStatus,
       date: formattedDate,
       items: items,
@@ -227,7 +227,7 @@ export default function MyOrders() {
           </button>
           <div>
             <h2 className="heading-2 text-gray-900">
-              Order #{selectedOrder.id.substring(0, 8)}
+              Order #TI/{selectedOrder.id.substring(0, 8)}
             </h2>
             <p className="body-semibold text-gray-600">
               Confirmed On {formattedDate}

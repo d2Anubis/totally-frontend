@@ -145,7 +145,7 @@ export default function OrderSuccessPage() {
                     : "Processing"}
                 </h3>
                 <p className="text-gray-600 text-sm">
-                  #{orderDetails.id.substring(0, 8)}
+                  #TI/{orderDetails.id.substring(0, 8)}
                 </p>
               </div>
               <div>

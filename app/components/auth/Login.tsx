@@ -18,6 +18,53 @@ interface LoginProps {
 const Login = ({ showTabs = true }: LoginProps) => {
   const { login, isLoggedIn, setUserFromStorage } = useAuth();
   const router = useRouter();
+  
+  // Handle redirects after login state changes
+  useEffect(() => {
+    if (isLoggedIn) {
+      // Check if we should redirect to checkout
+      const checkoutRedirectUrl = localStorage.getItem("checkout_redirect");
+      const returnUrl = localStorage.getItem("return_url");
+      const buyNowPending = localStorage.getItem("buy_now_pending");
+      const referrer = document.referrer;
+      const cameFromCheckout = referrer && referrer.includes('/checkout');
+      
+      // Check URL parameters for redirect info
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectParam = urlParams.get('redirect');
+      const shouldRedirectToCheckout = redirectParam === 'checkout' || cameFromCheckout;
+      
+      console.log("Login component - user just logged in, checking redirects:");
+      console.log("checkoutRedirectUrl:", checkoutRedirectUrl);
+      console.log("returnUrl:", returnUrl);
+      console.log("buyNowPending:", buyNowPending);
+      console.log("referrer:", referrer);
+      console.log("cameFromCheckout:", cameFromCheckout);
+      console.log("redirectParam:", redirectParam);
+      console.log("shouldRedirectToCheckout:", shouldRedirectToCheckout);
+      
+      // Small delay to ensure all state updates are complete
+      const redirectTimeout = setTimeout(() => {
+        if (checkoutRedirectUrl) {
+          console.log("Login useEffect: Redirecting to checkout:", checkoutRedirectUrl);
+          localStorage.removeItem("checkout_redirect");
+          router.push(checkoutRedirectUrl);
+        } else if (shouldRedirectToCheckout) {
+          console.log("Login useEffect: Should redirect to checkout, redirecting to checkout");
+          router.push("/checkout");
+        } else if (returnUrl) {
+          console.log("Login useEffect: Redirecting to return URL:", returnUrl);
+          localStorage.removeItem("return_url");
+          router.push(returnUrl);
+        } else {
+          console.log("Login useEffect: No specific redirect needed, going to homepage");
+          router.push("/");
+        }
+      }, 100);
+      
+      return () => clearTimeout(redirectTimeout);
+    }
+  }, [isLoggedIn, router]);
 
 
 
@@ -188,26 +235,41 @@ const Login = ({ showTabs = true }: LoginProps) => {
           address: userData.address || {}
         });
         
+        // Update AuthContext state to reflect logged-in user
+        setUserFromStorage();
+        
         // Close the loading dialog
         Swal.close();
         
-        // Get the stored return URLs
-        let buyNowPending = null;
-        let checkoutRedirectUrl = null;
-        let returnUrl = null;
+        // Get the stored return URLs from localStorage (same as regular login)
+        const buyNowPending = localStorage.getItem("buy_now_pending");
+        const checkoutRedirectUrl = localStorage.getItem("checkout_redirect");
+        const returnUrl = localStorage.getItem("return_url");
         
-        const storedState = localStorage.getItem("social_login_state");
-        if (storedState) {
-          try {
-            const state = JSON.parse(storedState);
-            if (state.buyNowPending) buyNowPending = state.buyNowPending;
-            if (state.checkoutRedirectUrl) checkoutRedirectUrl = state.checkoutRedirectUrl;
-            if (state.returnUrl) returnUrl = state.returnUrl;
-            
-            // Clear the stored state
-            localStorage.removeItem("social_login_state");
-          } catch (e) {
-            console.error("Error parsing stored social login state:", e);
+        // Check if user came from checkout page via referrer or URL parameter
+        const referrer = document.referrer;
+        const cameFromCheckout = referrer && referrer.includes('/checkout');
+        
+        // Also check URL parameters for redirect info
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectParam = urlParams.get('redirect');
+        const shouldRedirectToCheckout = redirectParam === 'checkout' || cameFromCheckout;
+        
+        console.log("Social login success - checking redirect URLs:");
+        console.log("buyNowPending:", buyNowPending);
+        console.log("checkoutRedirectUrl:", checkoutRedirectUrl);
+        console.log("returnUrl:", returnUrl);
+        console.log("referrer:", referrer);
+        console.log("cameFromCheckout:", cameFromCheckout);
+        console.log("redirectParam:", redirectParam);
+        console.log("shouldRedirectToCheckout:", shouldRedirectToCheckout);
+        
+        // Additional debugging - check all localStorage items
+        console.log("All localStorage items related to redirects (Social login):");
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key && (key.includes('redirect') || key.includes('checkout') || key.includes('return'))) {
+            console.log(`${key}:`, localStorage.getItem(key));
           }
         }
         
@@ -233,16 +295,8 @@ const Login = ({ showTabs = true }: LoginProps) => {
           }
         }
         
-        // Handle other redirects
-        if (checkoutRedirectUrl) {
-          localStorage.removeItem("checkout_redirect");
-          router.push(checkoutRedirectUrl);
-        } else if (returnUrl) {
-          localStorage.removeItem("return_url");
-          router.push(returnUrl);
-        } else {
-          router.push("/");
-        }
+        // Redirect logic is now handled by the useEffect above
+        console.log("Social login: Login successful, redirect will be handled by useEffect");
       } catch (error) {
         console.error("Error completing social login:", error);
         Swal.close();
@@ -327,14 +381,36 @@ const Login = ({ showTabs = true }: LoginProps) => {
         // Then check for general return URL (for wishlist feature)
         const returnUrl = localStorage.getItem("return_url");
 
+        // Check if user came from checkout page via referrer or URL parameter
+        const referrer = document.referrer;
+        const cameFromCheckout = referrer && referrer.includes('/checkout');
+        
+        // Also check URL parameters for redirect info
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectParam = urlParams.get('redirect');
+        const shouldRedirectToCheckout = redirectParam === 'checkout' || cameFromCheckout;
+
         // Debug logging to see what redirect URLs are available
         console.log("Login success - checking redirect URLs:");
         console.log("buyNowPending:", buyNowPending);
         console.log("checkoutRedirectUrl:", checkoutRedirectUrl);
         console.log("returnUrl:", returnUrl);
+        console.log("referrer:", referrer);
+        console.log("cameFromCheckout:", cameFromCheckout);
+        console.log("redirectParam:", redirectParam);
+        console.log("shouldRedirectToCheckout:", shouldRedirectToCheckout);
 
         // The cart will be automatically synced in ShopContext when user changes
         console.log("Login successful - cart will be synced automatically");
+        
+        // Additional debugging - check all localStorage items
+        console.log("All localStorage items related to redirects:");
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key && (key.includes('redirect') || key.includes('checkout') || key.includes('return'))) {
+            console.log(`${key}:`, localStorage.getItem(key));
+          }
+        }
 
         // Handle buy now pending action
         if (buyNowPending) {
@@ -384,19 +460,8 @@ const Login = ({ showTabs = true }: LoginProps) => {
           }
         }
 
-        if (checkoutRedirectUrl) {
-          console.log("Redirecting to checkout:", checkoutRedirectUrl);
-          localStorage.removeItem("checkout_redirect");
-          router.push(checkoutRedirectUrl);
-        } else if (returnUrl) {
-          console.log("Redirecting to return URL:", returnUrl);
-          localStorage.removeItem("return_url");
-          router.push(returnUrl);
-        } else {
-          console.log("No redirect URL found, going to homepage");
-          // Default redirect to home page
-          router.push("/");
-        }
+        // Redirect logic is now handled by the useEffect above
+        console.log("Regular login: Login successful, redirect will be handled by useEffect");
       } else {
         // Show error message without page reload
         Swal.fire({
@@ -478,6 +543,33 @@ const Login = ({ showTabs = true }: LoginProps) => {
         const checkoutRedirectUrl = localStorage.getItem("checkout_redirect");
         const returnUrl = localStorage.getItem("return_url");
 
+        // Check if user came from checkout page via referrer or URL parameter
+        const referrer = document.referrer;
+        const cameFromCheckout = referrer && referrer.includes('/checkout');
+        
+        // Also check URL parameters for redirect info
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirectParam = urlParams.get('redirect');
+        const shouldRedirectToCheckout = redirectParam === 'checkout' || cameFromCheckout;
+
+        console.log("Google login success - checking redirect URLs:");
+        console.log("buyNowPending:", buyNowPending);
+        console.log("checkoutRedirectUrl:", checkoutRedirectUrl);
+        console.log("returnUrl:", returnUrl);
+        console.log("referrer:", referrer);
+        console.log("cameFromCheckout:", cameFromCheckout);
+        console.log("redirectParam:", redirectParam);
+        console.log("shouldRedirectToCheckout:", shouldRedirectToCheckout);
+        
+        // Additional debugging - check all localStorage items
+        console.log("All localStorage items related to redirects (Google login):");
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key && (key.includes('redirect') || key.includes('checkout') || key.includes('return'))) {
+            console.log(`${key}:`, localStorage.getItem(key));
+          }
+        }
+
         if (buyNowPending) {
           try {
             const pendingData = JSON.parse(buyNowPending);
@@ -499,15 +591,8 @@ const Login = ({ showTabs = true }: LoginProps) => {
           }
         }
 
-        if (checkoutRedirectUrl) {
-          localStorage.removeItem("checkout_redirect");
-          router.push(checkoutRedirectUrl);
-        } else if (returnUrl) {
-          localStorage.removeItem("return_url");
-          router.push(returnUrl);
-        } else {
-          router.push("/");
-        }
+        // Redirect logic is now handled by the useEffect above
+        console.log("Google login: Login successful, redirect will be handled by useEffect");
       } else {
         throw new Error(data.message || "Google authentication failed");
       }

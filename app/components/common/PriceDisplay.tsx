@@ -27,13 +27,6 @@ export default function PriceDisplay({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Early return if price is invalid
-  if (inrPrice === null || inrPrice === undefined || isNaN(inrPrice) || inrPrice <= 0) {
-    return (
-      <span className={`text-gray-500 ${className}`}>Price not available</span>
-    );
-  }
-
   useEffect(() => {
     let mounted = true;
 
@@ -81,6 +74,13 @@ export default function PriceDisplay({
       window.removeEventListener("currencyChanged", handleCurrencyChange);
     };
   }, [inrPrice]);
+
+  // Early return if price is invalid - moved after hooks
+  if (inrPrice === null || inrPrice === undefined || isNaN(inrPrice) || inrPrice <= 0) {
+    return (
+      <span className={`text-gray-500 ${className}`}>Price not available</span>
+    );
+  }
 
   if (loading && showLoading) {
     return (

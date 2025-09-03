@@ -579,7 +579,7 @@ const TermsOfServicePage = () => {
 
           <div className="mb-4">
             <p>
-              <strong>TotallyIndian Tech Private Limited</strong>
+              <strong>TezTrade Exports Private Limited</strong>
             </p>
             <p>Mumbai, India</p>
           </div>
@@ -600,8 +600,8 @@ const TermsOfServicePage = () => {
             <p>
               <strong>Hours of Operation:</strong>
             </p>
-            <p>Monday to Saturday: 8:00 a.m. to 10:00 p.m. IST</p>
-            <p>Sunday: 10:00 a.m. to 7:00 p.m. IST</p>
+            <p>Monday to Friday: 10:00 a.m. to 7:00 p.m. IST</p>
+            <p>Saturday: 10:00 a.m. to 3:00 p.m. IST</p>
           </div>
         </section>
       </div>

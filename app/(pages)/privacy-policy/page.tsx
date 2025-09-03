@@ -221,7 +221,7 @@ const PrivacyPolicyPage = () => {
             <h3 className="text-xl font-semibold mb-3">Service Providers:</h3>
             <ul className="list-disc pl-6 mb-4">
               <li>
-                Payment processors (GlomoPay, PayGlocal, Razorpay, PayPal)
+                Payment processor (PayU)
               </li>
               <li>Shipping and delivery companies</li>
               <li>Customer support services</li>

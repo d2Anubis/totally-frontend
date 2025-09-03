@@ -159,7 +159,7 @@ const HeroSlider = () => {
   // Show loading state
   if (loading) {
     return (
-      <div className="relative w-full overflow-hidden rounded-3xl mb-3 md:mb-6 px-4 md:px-0">
+      <div className="relative w-full overflow-hidden rounded-[2rem] mb-3 md:mb-6 px-4 md:px-0">
         <div
           className="relative w-full bg-gray-200 animate-pulse rounded-lg flex items-center justify-center"
           style={{ height: `${imageHeight}px` }}
@@ -172,17 +172,17 @@ const HeroSlider = () => {
 
   return (
     <>
-      <div className="relative w-full overflow-hidden rounded-3xl mb-3 md:mb-6 px-4 md:px-0">
+      <div className="relative w-full overflow-hidden rounded-[2rem] mb-3 md:mb-6 px-4 md:px-0">
         <div className="relative w-full" style={{ height: `${imageHeight}px` }}>
           {slides.map((slide, index) => (
             <div
               key={slide.id}
-              className={`absolute top-0 left-0 w-full h-full rounded-3xl transition-opacity duration-500 ease-in-out ${
+              className={`absolute top-0 left-0 w-full h-full rounded-[2rem] transition-opacity duration-500 ease-in-out ${
                 index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
             >
               <div 
-                className={`w-full h-full rounded-3xl ${slide.buttonUrl ? 'cursor-pointer' : ''}`}
+                className={`w-full h-full rounded-[2rem] ${slide.buttonUrl ? 'cursor-pointer' : ''}`}
                 onClick={() => {
                   if (slide.buttonUrl) {
                     if (slide.buttonUrl.startsWith('http://') || slide.buttonUrl.startsWith('https://')) {
@@ -197,7 +197,7 @@ const HeroSlider = () => {
                   src={slide.imageUrl}
                   alt={slide.title}
                   fill
-                  className="object-contain rounded-3xl"
+                  className="object-contain rounded-[2rem]"
                   priority={index === 0}
                   onLoad={index === currentSlide ? handleImageLoad : undefined}
                   onError={(e) => {

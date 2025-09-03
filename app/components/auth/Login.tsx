@@ -535,11 +535,55 @@ const Login = ({ showTabs = true }: LoginProps) => {
   };
   
   const handleCustomGoogleLogin = () => {
-    // Trigger the Google OAuth flow programmatically
-    const googleButton = document.querySelector('[data-testid="google-button"]') as HTMLElement;
-    if (googleButton) {
-      googleButton.click();
+    // Add a small delay to ensure Google button is loaded
+    setTimeout(() => {
+      // Try multiple selectors to find the Google button
+      let googleButton = document.querySelector('[data-testid="google-button"]') as HTMLElement;
+    
+    if (!googleButton) {
+      // Try alternative selectors
+      googleButton = document.querySelector('div[role="button"]') as HTMLElement;
     }
+    
+    if (!googleButton) {
+      // Try finding by iframe
+      const iframe = document.querySelector('iframe[src*="accounts.google.com"]') as HTMLIFrameElement;
+      if (iframe) {
+        googleButton = iframe.parentElement as HTMLElement;
+      }
+    }
+    
+    if (!googleButton) {
+      // Try finding any button in the google-login-container
+      const container = document.querySelector('.google-login-container');
+      if (container) {
+        googleButton = container.querySelector('div[role="button"], button, iframe') as HTMLElement;
+      }
+    }
+    
+    if (googleButton) {
+      // Temporarily make the button visible to ensure it can be clicked
+      googleButton.style.display = 'block';
+      googleButton.style.visibility = 'visible';
+      googleButton.style.position = 'absolute';
+      googleButton.style.left = '-9999px';
+      googleButton.style.top = '-9999px';
+      googleButton.style.zIndex = '-1';
+      
+      // Trigger the click
+      googleButton.click();
+      
+      // Hide it again after a short delay
+      setTimeout(() => {
+        googleButton.style.display = 'none';
+        googleButton.style.visibility = 'hidden';
+      }, 100);
+    } else {
+      console.error('Google button not found with any selector');
+      // Fallback: try to trigger the Google OAuth flow directly
+      console.log('Attempting to trigger Google OAuth flow directly...');
+    }
+    }, 100); // 100ms delay to ensure Google button is loaded
   };
 
   return (

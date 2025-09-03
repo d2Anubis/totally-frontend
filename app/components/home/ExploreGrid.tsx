@@ -10,31 +10,31 @@ const ExploreGrid = () => {
       id: "1",
       title: "Beauty & Personal Care",
       description: "Natural beauty and personal care products",
-      image_url: "/images/start-exploring/Face Care.png",
+      image_url: "/images/start-exploring/Face & Body Care.png",
       categories: [
         {
           id: "1",
           title: "Face Care",
           description: "Natural face care products",
-          image_url: "/images/start-exploring/Face Care.png",
+          image_url: "/images/start-exploring/Face & Body Care.png",
         },
         {
           id: "2",
           title: "Body Care",
           description: "Natural body care products",
-          image_url: "/images/start-exploring/Body Care.png",
+          image_url: "/images/start-exploring/Body & Skin Care.png",
         },
         {
           id: "3",
           title: "Baby Care",
           description: "Natural baby care products",
-          image_url: "/images/start-exploring/Baby Care.png",
+          image_url: "/images/start-exploring/Baby & Kids Care.png",
         },
         {
           id: "4",
           title: "Hair Care",
           description: "Natural hair care products",
-          image_url: "/images/start-exploring/Hair Care.png",
+          image_url: "/images/start-exploring/Hair & Scalp Care.png",
         },
       ],
     },
@@ -74,25 +74,25 @@ const ExploreGrid = () => {
       id: "3",
       title: "Books",
       description: "Spiritual and educational books",
-      image_url: "/images/start-exploring/Spiritual Book.png",
+      image_url: "/images/start-exploring/Spiritual & Religious Books.png",
       categories: [
         {
           id: "9",
           title: "Spiritual Books",
           description: "Sacred texts and spiritual literature",
-          image_url: "/images/start-exploring/Spiritual Book.png",
+          image_url: "/images/start-exploring/Spiritual & Religious Books.png",
         },
         {
           id: "10",
           title: "Kids Books",
           description: "Educational books for children",
-          image_url: "/images/start-exploring/Kids Book.png",
+          image_url: "/images/start-exploring/Kids & Children Books.png",
         },
         {
           id: "11",
           title: "Sanskrit Books",
           description: "Ancient Sanskrit texts",
-          image_url: "/images/start-exploring/Sanskrit Book.png",
+          image_url: "/images/start-exploring/Sanskrit & Vedic Books.png",
         },
         {
           id: "12",
@@ -106,19 +106,19 @@ const ExploreGrid = () => {
       id: "4",
       title: "Flavours Of India",
       description: "Authentic Indian flavors and cuisine",
-      image_url: "/images/start-exploring/Whole Spices.png",
+      image_url: "/images/start-exploring/Whole & Ground Spices.png",
       categories: [
         {
           id: "13",
           title: "Whole Spices",
           description: "Pure and authentic whole spices",
-          image_url: "/images/start-exploring/Whole Spices.png",
+          image_url: "/images/start-exploring/Whole & Ground Spices.png",
         },
         {
           id: "14",
           title: "Masalas",
           description: "Traditional masala blends",
-          image_url: "/images/start-exploring/Masala.png",
+          image_url: "/images/start-exploring/Masala & Spice Mixes.png",
         },
         {
           id: "15",
@@ -156,7 +156,7 @@ const ExploreGrid = () => {
           id: "19",
           title: "Musical Instruments",
           description: "Traditional musical instruments",
-          image_url: "/images/start-exploring/Musical Instruments.png",
+          image_url: "/images/start-exploring/Musical & Traditional Instruments.png",
         },
         {
           id: "20",

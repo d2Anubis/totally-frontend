@@ -131,7 +131,17 @@ class LocationPricingService {
       // Detect user location
       const locationData = await this.detectUserLocation();
       if (!locationData || !locationData.success || !locationData.data) {
-        throw new Error("Failed to detect user location");
+        console.warn("[LocationPricing] Failed to detect user location, using fallback");
+        // Use fallback location (India/US) instead of throwing error
+        this.pricingContext = {
+          userCountry: "IN", // Default to India
+          userCurrency: "INR", // Default to INR
+          detectedAt: Date.now(),
+          isInitialized: true,
+        };
+        this.setCachedContext(this.pricingContext);
+        await currencyService.initialize();
+        return true;
       }
 
       // Create pricing context

@@ -1059,6 +1059,16 @@ body {
   min-height: 48px !important;
   box-sizing: border-box !important;
   position: relative !important;
+  background-color: white !important;
+  border: 1px solid #d1d5db !important;
+  color: #374151 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.google-login-container [role="button"]:hover {
+  background-color: #f9fafb !important;
 }
 
 /* Ensure the Google button iframe takes full width and proper height */

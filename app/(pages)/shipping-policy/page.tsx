@@ -125,7 +125,7 @@ const ShippingPolicyPage = () => {
             Please note that any customs duties, import taxes, or additional
             fees imposed by your country are your responsibility. Every country
             has different rules and thresholds, you can check your
-            country&apos;s threshold here.
+            country&apos;s threshold <a href="https://zonos.com/docs/guides/de-minimis-values" target="_blank" rel="noopener noreferrer" className="text-blue-00 hover:underline">here</a>.
           </p>
         </section>
 
@@ -151,8 +151,8 @@ const ShippingPolicyPage = () => {
             <p>
               <strong>Customer Service Hours:</strong>
             </p>
-            <p>Monday to Saturday: 8:00 a.m. to 10:00 p.m. IST</p>
-            <p>Sunday: 10:00 a.m. to 7:00 p.m. IST</p>
+            <p>Monday to Friday: 10:00 a.m. to 7:00 p.m. IST</p>
+            <p>Saturday: 10:00 a.m. to 3:00 p.m. IST</p>
           </div>
         </section>
       </div>

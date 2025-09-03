@@ -29,6 +29,44 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.png" />
+        
+        {/* Font Preloading */}
+        <link
+          rel="preload"
+          href="/fonts/Quicksand/Quicksand-Regular.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Quicksand/Quicksand-Medium.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Quicksand/Quicksand-SemiBold.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Quicksand/Quicksand-Bold.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/Square_Peg/SquarePeg-Regular.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"

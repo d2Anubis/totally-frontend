@@ -2,45 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base font configuration with fallbacks */
+body {
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Quicksand Font Faces */
 @font-face {
   font-family: "Quicksand";
-  src: url("/fonts/QuickSand/Quicksand-Light.ttf") format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
   font-family: "Quicksand";
-  src: url("/fonts/QuickSand/Quicksand-Regular.ttf") format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
   font-family: "Quicksand";
-  src: url("/fonts/QuickSand/Quicksand-Medium.ttf") format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
   font-family: "Quicksand";
-  src: url("/fonts/QuickSand/Quicksand-SemiBold.ttf") format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
   font-family: "Quicksand";
-  src: url("/fonts/QuickSand/Quicksand-Bold.ttf") format("truetype");
+  src: url("/fonts/Quicksand/Quicksand-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -1001,15 +1013,193 @@ body {
 /* Google Login Button Styling */
 .google-login-container {
   width: 100%;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
 }
 
-.google-login-container > div {
+/* Show only the first Google button container */
+.google-login-container > div:first-child {
   width: 100% !important;
+  display: block !important;
+}
+
+/* Hide all other Google button containers */
+.google-login-container > div:not(:first-child) {
+  display: none !important;
+}
+
+/* Hide any One Tap or additional Google buttons */
+.google-login-container div[data-testid="one-tap-button"],
+.google-login-container div[data-testid="google-button"] + div,
+.google-login-container iframe[src*="accounts.google.com/gsi/iframe/select"] {
+  display: none !important;
 }
 
 .google-login-container iframe {
   width: 100% !important;
   height: 48px !important;
+  border-radius: 6px !important;
+  display: block !important;
+}
+
+/* Ensure consistent button width for all Google login states */
+.google-login-container [role="button"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 12px 16px !important;
+  height: 48px !important;
+  border-radius: 6px !important;
+  min-height: 48px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+/* Ensure the Google button iframe takes full width and proper height */
+.google-login-container iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 48px !important;
+  border-radius: 6px !important;
+  display: block !important;
+  border: none !important;
+  box-sizing: border-box !important;
+}
+
+/* Force the Google button container to take full width */
+.google-login-container div[data-testid="google-button"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
+}
+
+/* Fix for One Tap personalized button */
+.google-login-container div[data-testid="one-tap-button"] {
+  width: 100% !important;
+}
+
+/* Ensure Google icon and text are properly aligned - force them together */
+.google-login-container span {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+/* Fix for Google button content alignment */
+.google-login-container div[style*="display: flex"] {
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+
+/* Force Google button to match login button width exactly */
+.google-login-container > div > div {
+  width: 100% !important;
+}
+
+/* Specific fixes for Google button content positioning */
+.google-login-container div[data-testid="google-button"] {
+  width: 100% !important;
+}
+
+.google-login-container div[data-testid="google-button"] > div {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+/* Ensure the Google logo and text stay together */
+.google-login-container div[data-testid="google-button"] span {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  justify-content: center !important;
+  width: auto !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Ensure text is visible and properly aligned */
+.google-login-container div[data-testid="google-button"] span {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  justify-content: center !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #3c4043 !important;
+}
+
+/* Fix for any nested divs that might separate icon and text */
+.google-login-container div[data-testid="google-button"] > div > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  justify-content: center !important;
+}
+
+/* Additional styling to ensure Google button matches Login button appearance */
+.google-login-container [role="button"] {
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+/* Ensure Google icon is properly sized and aligned */
+.google-login-container [role="button"] svg,
+.google-login-container svg {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+  margin-right: 8px !important;
+}
+
+/* Ensure proper spacing between icon and text */
+.google-login-container div[data-testid="google-button"] > div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 16px !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+/* Final cleanup - ensure only one Google button is visible */
+.google-login-container iframe:first-of-type {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.google-login-container iframe:not(:first-of-type) {
+  display: none !important;
+}
+
+/* Ensure text content is visible and not clipped */
+.google-login-container * {
+  overflow: visible !important;
+}
+
+.google-login-container div[data-testid="google-button"] * {
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Line clamp utilities for text truncation */

@@ -17,6 +17,10 @@ module.exports = {
       "2xl": "1536px",
     },
     extend: {
+      fontFamily: {
+        'quicksand': ['Quicksand', 'sans-serif'],
+        'square-peg': ['SquarePeg', 'cursive'],
+      },
       keyframes: {
         enter: {
           "0%": { transform: "translateY(20px)", opacity: "0" },

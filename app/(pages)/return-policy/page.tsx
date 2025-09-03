@@ -177,8 +177,8 @@ const ReturnPolicyPage = () => {
             <p>
               <strong>Customer Service Hours:</strong>
             </p>
-            <p>Monday to Saturday: 8:00 a.m. to 10:00 p.m. IST</p>
-            <p>Sunday: 10:00 a.m. to 7:00 p.m. IST</p>
+            <p>Monday to Friday: 10:00 a.m. to 7:00 p.m. IST</p>
+            <p>Saturday: 10:00 a.m. to 3:00 p.m. IST</p>
           </div>
         </section>
       </div>

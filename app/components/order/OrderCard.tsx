@@ -106,6 +106,15 @@ const OrderCard: React.FC<OrderCardProps> = ({
                     )}
                   </div>
                   <p className="body-semibold line-clamp-2 mt-2 text-sm md:text-base">{item.name}</p>
+                  {item.price && (
+                    <div className="mt-1">
+                      <PriceDisplay
+                        inrPrice={item.price}
+                        className="text-blue-00 body-semibold text-sm"
+                        showLoading={false}
+                      />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -129,6 +138,15 @@ const OrderCard: React.FC<OrderCardProps> = ({
                     )}
                   </div>
                   <p className="body-semibold line-clamp-2 mt-2 text-sm md:text-base">{item.name}</p>
+                  {item.price && (
+                    <div className="mt-1">
+                      <PriceDisplay
+                        inrPrice={item.price}
+                        className="text-blue-00 body-semibold text-sm"
+                        showLoading={false}
+                      />
+                    </div>
+                  )}
                 </div>
               ))}
 
@@ -153,7 +171,7 @@ const OrderCard: React.FC<OrderCardProps> = ({
         <div className="flex flex-wrap md:flex-nowrap justify-between items-center pt-3 md:pt-4 px-6 md:px-8 pb-4 md:pb-6">
           <div>
             <p className="body-semibold text-sm md:text-base">{totalItems} Items</p>
-            <p className="text-gray-600 body-semibold text-sm md:text-base">Order {id}</p>
+            <p className="text-gray-600 body-semibold text-sm md:text-base">Order #TI/{id}</p>
             {total && (
               <div className="text-blue-00 body-bold mt-1">
                 <PriceDisplay

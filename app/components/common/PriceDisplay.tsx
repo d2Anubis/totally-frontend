@@ -28,7 +28,7 @@ export default function PriceDisplay({
   const [error, setError] = useState<string | null>(null);
 
   // Early return if price is invalid
-  if (inrPrice === null || inrPrice === undefined || isNaN(inrPrice)) {
+  if (inrPrice === null || inrPrice === undefined || isNaN(inrPrice) || inrPrice <= 0) {
     return (
       <span className={`text-gray-500 ${className}`}>Price not available</span>
     );
@@ -39,7 +39,7 @@ export default function PriceDisplay({
 
     const loadPrice = async () => {
       // Double-check inrPrice is valid before converting
-      if (inrPrice === null || inrPrice === undefined || isNaN(inrPrice)) {
+      if (inrPrice === null || inrPrice === undefined || isNaN(inrPrice) || inrPrice <= 0) {
         if (mounted) {
           setError("Invalid price");
           setLoading(false);

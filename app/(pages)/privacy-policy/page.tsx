@@ -409,7 +409,7 @@ const PrivacyPolicyPage = () => {
             <p>
               <strong>General Privacy Inquiries:</strong>
             </p>
-            <p>Email: privacy@totallyindian.com</p>
+            <p>Email: legal@totallyindian.com</p>
             <p>Phone: +91 6262462162</p>
           </div>
 
@@ -417,14 +417,14 @@ const PrivacyPolicyPage = () => {
             <p>
               <strong>EU-Specific Inquiries:</strong>
             </p>
-            <p>EU Data Protection Officer: dpo-eu@totallyindian.com</p>
+            <p>EU Data Protection Officer: legal@totallyindian.com</p>
           </div>
 
           <div className="mb-4">
             <p>
               <strong>US-Specific Inquiries:</strong>
             </p>
-            <p>US Privacy Officer: privacy-us@totallyindian.com</p>
+            <p>US Privacy Officer: legal@totallyindian.com</p>
           </div>
 
           <div className="mb-4">
@@ -432,7 +432,7 @@ const PrivacyPolicyPage = () => {
               <strong>Postal Address:</strong>
             </p>
             <p>
-              TotallyIndian Tech Private Limited
+              TezTrade Exports Private Limited
               <br />
               Mumbai, India
             </p>
@@ -443,9 +443,9 @@ const PrivacyPolicyPage = () => {
               <strong>Customer Service Hours:</strong>
             </p>
             <p>
-              Monday to Saturday: 8:00 a.m. to 10:00 p.m. IST
+              Monday to Friday: 10:00 a.m. to 7:00 p.m. IST
               <br />
-              Sunday: 10:00 a.m. to 7:00 p.m. IST
+              Saturday: 10:00 a.m. to 3:00 p.m. IST
             </p>
           </div>
         </section>

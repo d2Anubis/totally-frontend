@@ -36,6 +36,30 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Ensure static assets are served correctly
+  assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
+  // Optimize font loading
+  experimental: {
+    optimizeCss: true,
+  },
+  // Headers for font files
+  async headers() {
+    return [
+      {
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

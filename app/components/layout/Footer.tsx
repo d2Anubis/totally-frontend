@@ -99,30 +99,29 @@ const Footer = () => {
       <div className="py-10 flex gap-1 w-full">
         <div className="left border border-gray-40 rounded-md p-4 flex flex-col items-center text-center w-[300px]">
           <Image
-            src={footer.qrCode.imageUrl}
-            alt={footer.qrCode.alt}
+            src="/images/footer/qr.png"
+            alt="WhatsApp QR Code"
             width={140}
             height={140}
             className="object-contain mb-4"
           />
           <p className="small-medium text-gray-10 mb-4">
-            Lorem ipsum is simply dummy text of the printing and typesetting
-            industry, duis aute irure dolor in reprehenderit.
+            Connect with us on WhatsApp for instant support and assistance.
           </p>
           <Link
-            href="/shop"
+            href="https://wa.me/916262462162?text=Hi,%20I%20need%20some%20help%20!"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center text-white title-4-bold py-1 px-4 rounded-full bg-highlight transition-colors"
           >
-            <i className={`fas ${footer.followButton.icon} mr-2`}></i>
-            {footer.followButton.text}
+            <i className="fab fa-whatsapp mr-2"></i>
+            WhatsApp
           </Link>
         </div>
         <div className="right flex flex-col gap-1 w-full">
           <div className="top">
             <div className="container flex justify-between mx-auto px-4">
               <div className="flex justify-between gap-10 w-full">
-                {/* QR Code Section */}
-
                 {/* Quick Links */}
                 <div>
                   <h4 className="heading-3 mb-4">Quick Links</h4>
@@ -324,26 +323,28 @@ const Footer = () => {
                   ))}
                 </div>
 
+                {/* Google Review Section */}
+                <div className="flex flex-col items-center">
+                  <p className="body-medium text-gray-10 mb-2 text-center">
+                  </p>
+                  <Link
+                    href="https://www.google.com/search?q=Totally+Indian+reviews"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center text-white title-4-bold py-2 px-4 rounded-full bg-blue-00 hover:bg-blue-10 transition-colors"
+                  >
+                    <i className="fab fa-google mr-2"></i>
+                    Leave a Review
+                  </Link>
+                </div>
+
                 {/* copyright */}
                 <div className="copyright">
                   <p className="body-large-medium text-gray-10">
                     &copy; {new Date().getFullYear()} Totally Indian. All rights
                     reserved.
                   </p>
-                  {/* button */}
-                  <Link
-                    href={footer.accessibility.url}
-                    className="bg-blue-00 text-white px-3 rounded-lg title-4-bold flex gap-2 py-2 justify-center items-center mt-3"
-                  >
-                    <Image
-                      src={footer.accessibility.icon}
-                      alt={footer.accessibility.text}
-                      width={20}
-                      height={20}
-                      className="object-contain h-5 w-auto"
-                    />
-                    For the visually impaired
-                  </Link>
+
                 </div>
               </div>
             </div>

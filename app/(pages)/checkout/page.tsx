@@ -926,10 +926,14 @@ export default function CheckoutPage() {
           const currentUrl = window.location.href;
           console.log("Checkout: saving checkout_redirect URL:", currentUrl);
           localStorage.setItem("checkout_redirect", currentUrl);
+          sessionStorage.setItem("checkout_redirect", currentUrl);
+          sessionStorage.setItem("came_from_checkout", "true");
 
           // Verify it was saved
           const savedUrl = localStorage.getItem("checkout_redirect");
-          console.log("Checkout: verified saved URL:", savedUrl);
+          const sessionSavedUrl = sessionStorage.getItem("checkout_redirect");
+          console.log("Checkout: verified saved URL (localStorage):", savedUrl);
+          console.log("Checkout: verified saved URL (sessionStorage):", sessionSavedUrl);
 
           router.push("/auth?tab=login&redirect=checkout");
         }
@@ -1324,13 +1328,20 @@ export default function CheckoutPage() {
                         currentUrl
                       );
                       localStorage.setItem("checkout_redirect", currentUrl);
+                      sessionStorage.setItem("checkout_redirect", currentUrl);
+                      sessionStorage.setItem("came_from_checkout", "true");
 
                       // Verify it was saved
                       const savedUrl =
                         localStorage.getItem("checkout_redirect");
+                      const sessionSavedUrl = sessionStorage.getItem("checkout_redirect");
                       console.log(
-                        "Checkout header login: verified saved URL:",
+                        "Checkout header login: verified saved URL (localStorage):",
                         savedUrl
+                      );
+                      console.log(
+                        "Checkout header login: verified saved URL (sessionStorage):",
+                        sessionSavedUrl
                       );
 
                       router.push("/auth?tab=login&redirect=checkout");
@@ -1506,13 +1517,20 @@ export default function CheckoutPage() {
                         currentUrl
                       );
                       localStorage.setItem("checkout_redirect", currentUrl);
+                      sessionStorage.setItem("checkout_redirect", currentUrl);
+                      sessionStorage.setItem("came_from_checkout", "true");
 
                       // Verify it was saved
                       const savedUrl =
                         localStorage.getItem("checkout_redirect");
+                      const sessionSavedUrl = sessionStorage.getItem("checkout_redirect");
                       console.log(
-                        "Checkout button: verified saved URL:",
+                        "Checkout button: verified saved URL (localStorage):",
                         savedUrl
+                      );
+                      console.log(
+                        "Checkout button: verified saved URL (sessionStorage):",
+                        sessionSavedUrl
                       );
 
                       router.push("/auth?tab=login&redirect=checkout");

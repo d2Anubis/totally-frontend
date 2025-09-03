@@ -34,6 +34,10 @@ const Login = ({ showTabs = true }: LoginProps) => {
       const redirectParam = urlParams.get('redirect');
       const shouldRedirectToCheckout = redirectParam === 'checkout' || cameFromCheckout;
       
+      // Also check sessionStorage as backup
+      const sessionCheckoutRedirect = sessionStorage.getItem("checkout_redirect");
+      const sessionCameFromCheckout = sessionStorage.getItem("came_from_checkout");
+      
       console.log("Login component - user just logged in, checking redirects:");
       console.log("checkoutRedirectUrl:", checkoutRedirectUrl);
       console.log("returnUrl:", returnUrl);
@@ -42,25 +46,40 @@ const Login = ({ showTabs = true }: LoginProps) => {
       console.log("cameFromCheckout:", cameFromCheckout);
       console.log("redirectParam:", redirectParam);
       console.log("shouldRedirectToCheckout:", shouldRedirectToCheckout);
+      console.log("sessionCheckoutRedirect:", sessionCheckoutRedirect);
+      console.log("sessionCameFromCheckout:", sessionCameFromCheckout);
       
       // Small delay to ensure all state updates are complete
       const redirectTimeout = setTimeout(() => {
         if (checkoutRedirectUrl) {
-          console.log("Login useEffect: Redirecting to checkout:", checkoutRedirectUrl);
+          console.log("Login useEffect: Redirecting to checkout (localStorage):", checkoutRedirectUrl);
           localStorage.removeItem("checkout_redirect");
-          router.push(checkoutRedirectUrl);
-        } else if (shouldRedirectToCheckout) {
+          sessionStorage.removeItem("checkout_redirect");
+          sessionStorage.removeItem("came_from_checkout");
+          // Use window.location.href for production reliability
+          window.location.href = checkoutRedirectUrl;
+        } else if (sessionCheckoutRedirect) {
+          console.log("Login useEffect: Redirecting to checkout (sessionStorage):", sessionCheckoutRedirect);
+          sessionStorage.removeItem("checkout_redirect");
+          sessionStorage.removeItem("came_from_checkout");
+          // Use window.location.href for production reliability
+          window.location.href = sessionCheckoutRedirect;
+        } else if (shouldRedirectToCheckout || sessionCameFromCheckout === 'true') {
           console.log("Login useEffect: Should redirect to checkout, redirecting to checkout");
-          router.push("/checkout");
+          sessionStorage.removeItem("came_from_checkout");
+          // Use window.location.href for production reliability
+          window.location.href = "/checkout";
         } else if (returnUrl) {
           console.log("Login useEffect: Redirecting to return URL:", returnUrl);
           localStorage.removeItem("return_url");
-          router.push(returnUrl);
+          // Use window.location.href for production reliability
+          window.location.href = returnUrl;
         } else {
           console.log("Login useEffect: No specific redirect needed, going to homepage");
-          router.push("/");
+          // Use window.location.href for production reliability
+          window.location.href = "/";
         }
-      }, 100);
+      }, 200); // Increased delay for production
       
       return () => clearTimeout(redirectTimeout);
     }

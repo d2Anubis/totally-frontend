@@ -67,10 +67,17 @@ const AuthPage = () => {
     // Check if there's a return_url in the URL query params
     const urlParams = new URLSearchParams(window.location.search);
     const returnUrl = urlParams.get("return_url");
+    const redirectParam = urlParams.get("redirect");
 
     if (returnUrl) {
       // Store in localStorage for use after successful login
       localStorage.setItem("return_url", returnUrl);
+    }
+    
+    // If redirect=checkout, set sessionStorage flag
+    if (redirectParam === 'checkout') {
+      sessionStorage.setItem("came_from_checkout", "true");
+      console.log("AuthPage: Set came_from_checkout flag due to redirect parameter");
     }
   }, []);
 

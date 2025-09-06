@@ -33,10 +33,12 @@ const Login = ({ showTabs = true }: LoginProps) => {
       const urlParams = new URLSearchParams(window.location.search);
       const redirectParam = urlParams.get('redirect');
       const shouldRedirectToCheckout = redirectParam === 'checkout' || cameFromCheckout;
+      const shouldRedirectToTrackOrder = redirectParam === 'track-order';
       
       // Also check sessionStorage as backup
       const sessionCheckoutRedirect = sessionStorage.getItem("checkout_redirect");
       const sessionCameFromCheckout = sessionStorage.getItem("came_from_checkout");
+      const sessionCameFromTrackOrder = sessionStorage.getItem("came_from_track_order");
       
       console.log("Login component - user just logged in, checking redirects:");
       console.log("checkoutRedirectUrl:", checkoutRedirectUrl);
@@ -46,8 +48,10 @@ const Login = ({ showTabs = true }: LoginProps) => {
       console.log("cameFromCheckout:", cameFromCheckout);
       console.log("redirectParam:", redirectParam);
       console.log("shouldRedirectToCheckout:", shouldRedirectToCheckout);
+      console.log("shouldRedirectToTrackOrder:", shouldRedirectToTrackOrder);
       console.log("sessionCheckoutRedirect:", sessionCheckoutRedirect);
       console.log("sessionCameFromCheckout:", sessionCameFromCheckout);
+      console.log("sessionCameFromTrackOrder:", sessionCameFromTrackOrder);
       
       // Small delay to ensure all state updates are complete
       const redirectTimeout = setTimeout(() => {
@@ -69,6 +73,13 @@ const Login = ({ showTabs = true }: LoginProps) => {
           sessionStorage.removeItem("came_from_checkout");
           // Use window.location.href for production reliability
           window.location.href = "/checkout";
+        } else if (shouldRedirectToTrackOrder || sessionCameFromTrackOrder === 'true') {
+          console.log("Login useEffect: Should redirect to track order, redirecting to orders");
+          console.log("shouldRedirectToTrackOrder:", shouldRedirectToTrackOrder);
+          console.log("sessionCameFromTrackOrder:", sessionCameFromTrackOrder);
+          sessionStorage.removeItem("came_from_track_order");
+          // Use window.location.href for production reliability
+          window.location.href = "/account?tab=orders";
         } else if (returnUrl) {
           console.log("Login useEffect: Redirecting to return URL:", returnUrl);
           localStorage.removeItem("return_url");

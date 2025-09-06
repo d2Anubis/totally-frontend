@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../../context/AuthContext";
 import navigationData from "../../data/navigation.json";
 import { newsletterService } from "../../lib/services/subscribeService";
 
@@ -16,6 +18,8 @@ const Footer = () => {
   const { footer, header } = navigationData;
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
+  const { isLoggedIn } = useAuth();
 
   // Handle newsletter form submission
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
@@ -39,6 +43,24 @@ const Footer = () => {
       console.error("Newsletter subscription error:", error);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  // Handle track order click
+  const handleTrackOrderClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    if (!isLoggedIn) {
+      // Save current page for redirect after login
+      const currentUrl = window.location.href;
+      localStorage.setItem("return_url", currentUrl);
+      sessionStorage.setItem("came_from_track_order", "true");
+      
+      // Redirect to login page
+      router.push("/auth?tab=login&redirect=track-order");
+    } else {
+      // User is logged in, go to track order page
+      router.push("/account?tab=orders");
     }
   };
 
@@ -159,12 +181,12 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/track-order"
-                        className="body-large-medium text-gray-10 hover:text-blue-00"
+                      <button
+                        onClick={handleTrackOrderClick}
+                        className="body-large-medium text-gray-10 hover:text-blue-00 cursor-pointer"
                       >
                         Track Order
-                      </Link>
+                      </button>
                     </li>
                     <li>
                       <Link
